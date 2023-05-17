@@ -27,6 +27,7 @@ php -S localhost:8080
 
 (PS C:\full stack\fullstack\backend\public> php -S localhost:8080)
 
-http://localhost:8080
+backend: http://localhost:8080
+frontend: http://localhost:3000
 
 Use proxy for frontend to test fake data.
