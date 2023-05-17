@@ -14,7 +14,7 @@ The product data in the database is already populated and accessible via the PHP
 
 
 server : 
-prot: 8080
+port: 8080
 start sever:
 php -S localhost:8080
 

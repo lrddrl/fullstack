@@ -185,7 +185,7 @@ const App = () => {
               src={product.image} 
               alt={product.name} 
               className="product-image"
-              style={{ height: 50 }}
+              style={{ height: 80 }}
               onClick={() => handleProductClick(product.id)}
             />
             <h3>{product.name}</h3>
