@@ -65,6 +65,20 @@ const App = () => {
     });
   };
 
+
+  const calculateTotalPrice = () => {
+    let totalPrice = 0;
+    cartItems.forEach((item) => {
+      totalPrice += item.price;
+    });
+    return totalPrice.toFixed(2);
+  };
+
+  const handleCheckout = () => {
+    console.log('Checkout clicked!');
+  };
+
+
   const sortedProducts = [...filteredProducts].sort((a, b) => {
     if (sortByPrice === 'asc') {
       return a.price - b.price;
@@ -76,9 +90,39 @@ const App = () => {
 
   return (
     <div>
-      <h1
-        style={{ marginLeft: 50 }}
-      >Product Listing Page</h1>
+       <nav className="navbar">
+          <div className="navbar-brand">
+             <h1 >Product Listing Page</h1>
+          </div>
+          <div className="navbar-cart">
+                    {/* <h2
+                    style={{ marginLeft: 50 }}
+                    >Cart:</h2> */}
+                    {cartItems.length === 0 ? (
+                      <p style={{ marginLeft: 50 }}>Cart is empty.</p>
+                    ) : (
+                      <ul>
+                        {cartItems.map((item) => (
+                          <li key={item.id}
+                          className="cart-item"
+                          >
+                            {item.name} - ${item.price}
+                            <button 
+                            className="cart-item button"
+                            onClick={() => handleRemoveFromCart(item.id)}>
+                              Remove
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                      <div className="navbar-cart" >
+                        <p>Total Price: ${calculateTotalPrice()}</p>
+                        <button className="btn-checkout" onClick={handleCheckout}>Checkout</button>
+                      </div>
+                </div> 
+        </nav>                  
+
        <div className="button-group">
         <button
           className={`sort-button ${
@@ -135,13 +179,14 @@ const App = () => {
           <div
             key={product.id}
             className="product-item"
-            onClick={() => handleProductClick(product.id)}
+            // onClick={() => handleProductClick(product.id)}
           >
             <img 
               src={product.image} 
               alt={product.name} 
               className="product-image"
               style={{ height: 50 }}
+              onClick={() => handleProductClick(product.id)}
             />
             <h3>{product.name}</h3>
             <p>Price: ${product.price}</p>
@@ -152,27 +197,7 @@ const App = () => {
         ))}
       </div>
 
-      <h2
-      style={{ marginLeft: 50 }}
-      >Cart:</h2>
-      {cartItems.length === 0 ? (
-        <p style={{ marginLeft: 50 }}>Cart is empty.</p>
-      ) : (
-        <ul>
-          {cartItems.map((item) => (
-            <li key={item.id}
-            className="cart-item"
-            >
-              {item.name} - ${item.price}
-              <button 
-              className="cart-item button"
-              onClick={() => handleRemoveFromCart(item.id)}>
-                Remove
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
+           
     </div>
   );
 };
