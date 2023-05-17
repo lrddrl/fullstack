@@ -25,7 +25,10 @@ prot: 8080
 start sever:
 php -S localhost:8080
 
+backend
 (PS C:\full stack\fullstack\backend\public> php -S localhost:8080)
+frontend
+(PS C:\full stack\fullstack\website> npm start)
 
 backend: http://localhost:8080
 frontend: http://localhost:3000
